@@ -7,6 +7,8 @@ from marshmallow import ValidationError
 from db import db
 from ma import ma
 
+from resources.chatbot import ChatBotRegister
+
 app = Flask(__name__)
 
 api = Api(app, prefix="/api/v1")
@@ -17,7 +19,10 @@ app.config.from_object("config")
 app.config.from_envvar("APPLICATION_SETTING")
 @app.route('/')
 def hello_world():
-    return 'AP Line Chat Bot Hello World! v2.0.1'
+    return "iCRM Chatbot Hello World! v1.0.0"
+
+
+api.add_resource(ChatBotRegister, "/register")
 
 if __name__ == '__main__':
     db.init_app(app)
