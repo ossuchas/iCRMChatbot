@@ -7,7 +7,7 @@ import re
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING
 
-from libs import chatbot_helper, test
+from libs import chatbot_helper, test, menu_04_01_ac_period
 from models.vw_crm_line_actual_income import ActualIncomeByProjModel
 
 
@@ -50,6 +50,9 @@ class ChatBotRegister(Resource):
 
         if events_type == 'message':
             msg_type = payload['events'][0]['message']['type']
+        elif events_type == 'postback':
+            msg_type = 'postback'
+            # msg_type = payload['events'][0]['postback']['type']
         else:
             msg_type = 'beacon'
 
@@ -64,9 +67,20 @@ class ChatBotRegister(Resource):
                 # Reply Message Default Post API
                 chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif message in TEST_WORDING:
-                values = ActualIncomeByProjModel().find_by_date()
-                # print(datas)
-                test.replyMsg(reply_token, None, values, CHANNEL_ACCESS_TOKEN)
+                # values = ActualIncomeByProjModel().find_by_date()
+                # values = ActualIncomeByProjModel().find_by_date('20191203')
+                # test.replyMsg(reply_token, None, values, '2019-12-08', CHANNEL_ACCESS_TOKEN)
+                menu_04_01_ac_period.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
+        elif msg_type == 'postback':
+            # print('kai')
+            param_data = payload['events'][0]['postback']['data']
+            param_date = payload['events'][0]['postback']['params']['date']
+            date_val = param_date.replace("-", "").strip()
+            print(param_data, date_val)
+            # reply_msg = "{}={}".format(param_data, date_val)
+            values = ActualIncomeByProjModel().find_by_date(date_val)
+            test.replyMsg(reply_token, None, values, param_date, CHANNEL_ACCESS_TOKEN)
+            # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
         elif msg_type == 'beacon':
             beacon_hwid = payload['events'][0]['beacon']['hwid']
             beacon_dm = payload['events'][0]['beacon']['dm']

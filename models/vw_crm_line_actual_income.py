@@ -18,8 +18,12 @@ class ActualIncomeByProjModel(db.Model):
     NetPriceExclFD = db.Column(db.Float)
 
     @classmethod
-    def find_by_date(cls) -> List["ActualIncomeByProjModel"]:
+    def find_by_current(cls) -> List["ActualIncomeByProjModel"]:
         return cls.query.filter_by(TransferDateApprove='20191206').all()
+
+    @classmethod
+    def find_by_date(cls, _date: str) -> List["ActualIncomeByProjModel"]:
+        return cls.query.filter_by(TransferDateApprove=_date).all()
 
     def save_to_db(self) -> None:
         db.session.add(self)

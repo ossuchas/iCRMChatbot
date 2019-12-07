@@ -14,23 +14,43 @@ def replyMsg(reply_token, text_msg, line_aceess_token):
 
     # print(type(test_dict))
 
-    # tmp_str = \
-    #     {
-    #         "type": "flex",
-    #         "altText": "Flex Message",
-    #         "contents": {
-    #             "type": "bubble",
-    #             "body": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": test_dict
-    #             }
-    #         }
-    #     }
     type_msg = {
-        "type": "text",
-        "text": text_msg
-    }
+            "type": "flex",
+            "altText": "Flex Message",
+            "contents":
+                {
+                    "type": "bubble",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "hello, world",
+                                "action": {
+                                    "type": "datetimepicker",
+                                    "label": "action",
+                                    "data": "storeId=12345",
+                                    "mode": "date"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "datetimepicker",
+                                    "label": "action",
+                                    "data": "actual_income",
+                                    "mode": "date"
+                                }
+                            }
+                        ]
+                    }
+                }
+        }
+    # type_msg = {
+    #     "type": "text",
+    #     "text": text_msg
+    # }
 
     data = {
         "replyToken": reply_token,

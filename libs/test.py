@@ -14,13 +14,14 @@ from typing import List
 
 def replyMsg(reply_token: str = None, text_msg: str = None,
              values: List["ActualIncomeByProjModel"] = None,
+             date_val: str = None,
              line_aceess_token: str = None) -> int:
     authorization = 'Bearer {}'.format(line_aceess_token)
     headers = {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': authorization
     }
-    # print(values)
+    print(values)
     # value = [(100, 10), (200, 20), (300, 30)]
 
     new_contents = [{
@@ -179,6 +180,21 @@ def replyMsg(reply_token: str = None, text_msg: str = None,
                         }
                     ]
                 },
+                "hero": {
+                    "type": "box",
+                    "layout": "baseline",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "Transfer Date At {}".format(date_val),
+                            "align": "end",
+                            "weight": "bold",
+                            "offsetEnd": "20px",
+                            "size": "sm",
+                            "color": "#939393"
+                        }
+                    ]
+                },
                 "body": {
                     "type": "box",
                     "layout": "vertical",
@@ -192,8 +208,8 @@ def replyMsg(reply_token: str = None, text_msg: str = None,
                             "type": "text",
                             "text": "Copyright 2019 AP PCL.",
                             "size": "xs",
-                            "color": "#FFFFFF",
-                            "align": "center"
+                            "align": "center",
+                            "color": "#ffffff"
                         },
                         {
                             "type": "box",
@@ -201,22 +217,18 @@ def replyMsg(reply_token: str = None, text_msg: str = None,
                             "contents": [
                                 {
                                     "type": "image",
-                                    "url": "https://i.ibb.co/fS0B4wP/AP-Logo-2018.png",
-                                    "size": "sm"
+                                    "url": "https://i.ibb.co/fS0B4wP/AP-Logo-2018.png"
                                 }
                             ],
                             "position": "absolute",
-                            "width": "25px",
-                            "offsetTop": "2px"
+                            "width": "32px",
+                            "height": "32px",
+                            "offsetBottom": "2px"
                         }
-                    ],
-                    "height": "30px"
+                    ]
                 },
                 "styles": {
                     "header": {
-                        "backgroundColor": "#000000"
-                    },
-                    "hero": {
                         "backgroundColor": "#000000"
                     },
                     "footer": {
