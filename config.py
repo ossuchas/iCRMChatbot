@@ -26,3 +26,4 @@ LINE_API = os.environ.get("LINE_API")
 
 DEFAULT_REPLY_WORDING = "เจ้านายกำลังฝึกผมให้เข้าใจในเรื่องอื่นๆอยู่นะครับ ขอโทษทีตอนนี้ยังไม่พร้อมตอบเรื่องที่ถามมานะครับ"
 REPLY_WORDING = ["99999", "00000", "เสี่ยจัสติน", "เสี่ย"]
+TEST_WORDING = ["test", "Test"]

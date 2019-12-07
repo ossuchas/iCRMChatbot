@@ -4,9 +4,11 @@ from flask import request
 import re
 
 
-from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING
+from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
+    TEST_WORDING
 
-from libs import chatbot_helper
+from libs import chatbot_helper, test
+from models.vw_crm_line_actual_income import ActualIncomeByProjModel
 
 
 class ChatBot(Resource):
@@ -61,6 +63,10 @@ class ChatBotRegister(Resource):
                 reply_msg = DEFAULT_REPLY_WORDING
                 # Reply Message Default Post API
                 chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
+            elif message in TEST_WORDING:
+                values = ActualIncomeByProjModel().find_by_date()
+                # print(datas)
+                test.replyMsg(reply_token, None, values, CHANNEL_ACCESS_TOKEN)
         elif msg_type == 'beacon':
             beacon_hwid = payload['events'][0]['beacon']['hwid']
             beacon_dm = payload['events'][0]['beacon']['dm']
