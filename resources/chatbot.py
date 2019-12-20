@@ -3,11 +3,14 @@ from flask_restful import Resource
 from flask import request
 import re
 
+from datetime import datetime, timedelta
+
 
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING
 
-from libs import chatbot_helper, test, menu_04_01_ac_period
+from libs import chatbot_helper, test, menu_04_01_ac_period, menu_04_01_actual_income_show_daily, \
+    quick_reply, menu_project_sdh
 from models.vw_crm_line_actual_income import ActualIncomeByProjModel
 
 
@@ -65,12 +68,27 @@ class ChatBotRegister(Resource):
             if message in REPLY_WORDING:
                 reply_msg = DEFAULT_REPLY_WORDING
                 # Reply Message Default Post API
-                chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
+                # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
+                quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif message in TEST_WORDING:
-                # values = ActualIncomeByProjModel().find_by_date()
-                # values = ActualIncomeByProjModel().find_by_date('20191203')
-                # test.replyMsg(reply_token, None, values, '2019-12-08', CHANNEL_ACCESS_TOKEN)
-                menu_04_01_ac_period.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
+
+                menu_project_sdh.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
+                # yesterday = datetime.now() - timedelta(days=1)
+                # before_yesterday = datetime.now() - timedelta(days=2)
+                # values = ActualIncomeByProjModel().find_by_date(datetime.now().strftime('%Y%m%d'))
+                # last_values = ActualIncomeByProjModel().find_by_date(yesterday.strftime('%Y%m%d'))
+                # before_last_values = ActualIncomeByProjModel().find_by_date(before_yesterday.strftime('%Y%m%d'))
+                # # values = ActualIncomeByProjModel().find_by_date('20191203')
+                # # test.replyMsg(reply_token, None, values, '2019-12-08', CHANNEL_ACCESS_TOKEN)
+                # # menu_04_01_ac_period.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
+                # menu_04_01_actual_income_show_daily.replyMsg(reply_token, None,
+                #                                              values,
+                #                                              last_values,
+                #                                              before_last_values,
+                #                                              datetime.now().strftime('%d/%m/%Y'),
+                #                                              yesterday.strftime('%d/%m/%Y'),
+                #                                              before_yesterday.strftime('%d/%m/%Y'),
+                #                                              CHANNEL_ACCESS_TOKEN)
         elif msg_type == 'postback':
             # print('kai')
             param_data = payload['events'][0]['postback']['data']

@@ -17,6 +17,8 @@ CORS(app, resources=r"/api/*", allow_headers="Content-Type")
 load_dotenv(".env", verbose=True)
 app.config.from_object("config")
 app.config.from_envvar("APPLICATION_SETTING")
+
+
 @app.route('/')
 def hello_world():
     return "iCRM Chatbot Hello World! v1.0.0"

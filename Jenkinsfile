@@ -3,7 +3,7 @@ pipeline {
     registry = "apthailand/suchat_s"
     registryCredential = 'docker_ossuchas'
     dockerImage = ''
-    image_tag_number = 'chatbot_api_v3.0.8'
+    image_tag_number = 'icrmchatbot_api_v1.0.0'
     deployments = 'linechatbot'
     projects = 'testrepo'
   }
@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/ossuchas/aplinechatbot.git'
+        git 'https://github.com/ossuchas/iCRMChatbot.git'
       }
     }
     stage('Building image') {
