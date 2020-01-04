@@ -2,7 +2,7 @@ import os
 import re
 import requests
 import json
-from config import LINE_API
+from config import LINE_API_REPLY
 
 
 def replyMsg(reply_token, text_msg, line_aceess_token):
@@ -459,5 +459,5 @@ def replyMsg(reply_token, text_msg, line_aceess_token):
     }
 
     session = requests.Session()
-    response = session.post(LINE_API, data=json.dumps(data), headers=headers)
+    response = session.post(LINE_API_REPLY, data=json.dumps(data), headers=headers)
     return 201

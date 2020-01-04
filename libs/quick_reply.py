@@ -6,7 +6,7 @@ import os
 import re
 import requests
 import json
-from config import LINE_API
+from config import LINE_API_REPLY
 from models.vw_crm_line_actual_income import ActualIncomeByProjModel
 from typing import List
 
@@ -88,5 +88,5 @@ def quickreplymsg(reply_token: str = None, text_msg: str = None,
     }
 
     session = requests.Session()
-    response = session.post(LINE_API, data=json.dumps(data), headers=headers)
+    response = session.post(LINE_API_REPLY, data=json.dumps(data), headers=headers)
     return 201

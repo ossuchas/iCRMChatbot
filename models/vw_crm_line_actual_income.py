@@ -25,6 +25,13 @@ class ActualIncomeByProjModel(db.Model):
     def find_by_date(cls, _date: str) -> List["ActualIncomeByProjModel"]:
         return cls.query.filter_by(TransferDateApprove=_date).all()
 
+    @classmethod
+    def find_by_datetest(cls, _date: str) -> str:
+        sql_statement = """
+           SELECT FORMAT([dbo].[CRM_fn_GetDateAddPrevious](CAST(GETDATE() AS DATE), {}), 'yyyyMMdd')
+           """.format(_date)
+        return db.session.execute(sql_statement).fetchone()
+
     def save_to_db(self) -> None:
         db.session.add(self)
         db.session.commit()

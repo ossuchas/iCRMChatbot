@@ -5,12 +5,16 @@ import re
 
 from datetime import datetime, timedelta
 
+import requests
+import json
+from config import LINE_API_REPLY
+
 
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
-    TEST_WORDING
+    TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND
 
 from libs import chatbot_helper, test, menu_04_01_ac_period, menu_04_01_actual_income_show_daily, \
-    quick_reply, menu_project_sdh
+    quick_reply, menu_project_sdh, chatbot_push_helper, chatbot_rich_menu
 from models.vw_crm_line_actual_income import ActualIncomeByProjModel
 
 
@@ -71,33 +75,32 @@ class ChatBotRegister(Resource):
                 # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
                 quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif message in TEST_WORDING:
-
-                menu_project_sdh.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
-                # yesterday = datetime.now() - timedelta(days=1)
-                # before_yesterday = datetime.now() - timedelta(days=2)
-                # values = ActualIncomeByProjModel().find_by_date(datetime.now().strftime('%Y%m%d'))
-                # last_values = ActualIncomeByProjModel().find_by_date(yesterday.strftime('%Y%m%d'))
-                # before_last_values = ActualIncomeByProjModel().find_by_date(before_yesterday.strftime('%Y%m%d'))
-                # # values = ActualIncomeByProjModel().find_by_date('20191203')
-                # # test.replyMsg(reply_token, None, values, '2019-12-08', CHANNEL_ACCESS_TOKEN)
-                # # menu_04_01_ac_period.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
-                # menu_04_01_actual_income_show_daily.replyMsg(reply_token, None,
-                #                                              values,
-                #                                              last_values,
-                #                                              before_last_values,
-                #                                              datetime.now().strftime('%d/%m/%Y'),
-                #                                              yesterday.strftime('%d/%m/%Y'),
-                #                                              before_yesterday.strftime('%d/%m/%Y'),
-                #                                              CHANNEL_ACCESS_TOKEN)
+                # menu_project_sdh.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
+                # chatbot_push_helper.pushMsg(reply_token, CHANNEL_ACCESS_TOKEN)
+                values = ActualIncomeByProjModel().find_by_datetest("2")[0]
+                print(values)
         elif msg_type == 'postback':
             # print('kai')
             param_data = payload['events'][0]['postback']['data']
-            param_date = payload['events'][0]['postback']['params']['date']
-            date_val = param_date.replace("-", "").strip()
-            print(param_data, date_val)
+            # print(param_data)
+            richmenuId = None
+            if param_data == 'next':
+                richmenuId = RICH_MENU_SECOND
+            elif param_data == 'back':
+                richmenuId = RICH_MENU_MAIN
+            else:
+                pass
+
+            chatbot_rich_menu.replyMsg(userId=userId,
+                                       richMenuId=richmenuId,
+                                       line_aceess_token=CHANNEL_ACCESS_TOKEN)
+
+            # param_date = payload['events'][0]['postback']['params']['date']
+            # date_val = param_date.replace("-", "").strip()
+            # print(param_data, date_val)
             # reply_msg = "{}={}".format(param_data, date_val)
-            values = ActualIncomeByProjModel().find_by_date(date_val)
-            test.replyMsg(reply_token, None, values, param_date, CHANNEL_ACCESS_TOKEN)
+            # values = ActualIncomeByProjModel().find_by_date(date_val)
+            # test.replyMsg(reply_token, None, values, param_date, CHANNEL_ACCESS_TOKEN)
             # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
         elif msg_type == 'beacon':
             beacon_hwid = payload['events'][0]['beacon']['hwid']
