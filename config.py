@@ -30,5 +30,5 @@ DEFAULT_REPLY_WORDING = "เจ้านายกำลังฝึกผมใ�
 REPLY_WORDING = ["99999", "00000", "เสี่ยจัสติน", "เสี่ย"]
 TEST_WORDING = ["test", "Test"]
 
-RICH_MENU_MAIN = "richmenu-d106eccde0f0fdbcaf14c5fccef75a9a"
-RICH_MENU_SECOND = "richmenu-0c85259d7d9e71b836e4751a24180c95"
+RICH_MENU_MAIN = "richmenu-ffbaa5175e92a75db4191e35c71b1148"
+RICH_MENU_SECOND = "richmenu-698b7cddd9fcc578305bb3ed4c7ec984"
