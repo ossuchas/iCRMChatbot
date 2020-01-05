@@ -14,7 +14,7 @@ from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND
 
 from libs import chatbot_helper, test, menu_04_01_ac_period, menu_04_01_actual_income_show_daily, \
-    quick_reply, menu_project_sdh, chatbot_push_helper, chatbot_rich_menu
+    quick_reply, menu_project_sdh, chatbot_push_helper, chatbot_rich_menu, menu_04_01_acgrs_period
 from models.vw_crm_line_actual_income import ActualIncomeByProjModel
 
 
@@ -75,10 +75,12 @@ class ChatBotRegister(Resource):
                 # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
                 quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif message in TEST_WORDING:
+                menu_04_01_acgrs_period.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
                 # menu_project_sdh.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
                 # chatbot_push_helper.pushMsg(reply_token, CHANNEL_ACCESS_TOKEN)
-                values = ActualIncomeByProjModel().find_by_datetest("2")[0]
-                print(values)
+                # values = ActualIncomeByProjModel().find_by_datetest("2")[0]
+                # print(values)
+
         elif msg_type == 'postback':
             # print('kai')
             param_data = payload['events'][0]['postback']['data']
