@@ -11,11 +11,13 @@ from config import LINE_API_REPLY
 
 
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
-    TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND
+    TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, GROSS_INCOME
 
 from libs import chatbot_helper, test, menu_04_01_ac_period, menu_04_01_actual_income_show_daily, \
-    quick_reply, menu_project_sdh, chatbot_push_helper, chatbot_rich_menu, menu_04_01_acgrs_period
-from models.vw_crm_line_actual_income import ActualIncomeByProjModel
+    quick_reply, menu_project_sdh, chatbot_push_helper, chatbot_rich_menu, menu_04_01_acgrs_period, \
+    menu_04_01_acgrs_income_show_y2d
+
+from models.crm_line_gross_income import GrossIncomeModel
 
 
 class ChatBot(Resource):
@@ -80,7 +82,14 @@ class ChatBotRegister(Resource):
                 # chatbot_push_helper.pushMsg(reply_token, CHANNEL_ACCESS_TOKEN)
                 # values = ActualIncomeByProjModel().find_by_datetest("2")[0]
                 # print(values)
-
+            elif message in GROSS_INCOME:
+                # print(message)
+                grs_model = GrossIncomeModel().find_all()
+                menu_04_01_acgrs_income_show_y2d.replyMsg(reply_token, grs_model, CHANNEL_ACCESS_TOKEN)
+        elif msg_type == 'image':
+            image_id = payload['events'][0]['message']['id']
+            contentProvider = payload['events'][0]['message']['contentProvider']['type']
+            print(f"{image_id} , {contentProvider}")
         elif msg_type == 'postback':
             # print('kai')
             param_data = payload['events'][0]['postback']['data']

@@ -63,7 +63,12 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
                                                         "url": "https://i.ibb.co/1M4dwWq/calendar-y2d-v1-0.png",
                                                         "size": "full",
                                                         "aspectRatio": "24:7",
-                                                        "aspectMode": "fit"
+                                                        "aspectMode": "fit",
+                                                        "action": {
+                                                            "type": "message",
+                                                            "label": "action",
+                                                            "text": "Actual Income Period Y2D"
+                                                        }
                                                     },
                                                     {
                                                         "type": "image",
@@ -71,7 +76,11 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
                                                         "size": "full",
                                                         "aspectRatio": "24:7",
                                                         "aspectMode": "fit",
-                                                        "margin": "none"
+                                                        "action": {
+                                                            "type": "message",
+                                                            "label": "action",
+                                                            "text": "Actual Income Daily"
+                                                        }
                                                     }
                                                 ]
                                             }
@@ -106,7 +115,12 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
                                                         "url": "https://i.ibb.co/1M4dwWq/calendar-y2d-v1-0.png",
                                                         "size": "full",
                                                         "aspectMode": "fit",
-                                                        "aspectRatio": "24:7"
+                                                        "aspectRatio": "24:7",
+                                                        "action": {
+                                                            "type": "message",
+                                                            "label": "action",
+                                                            "text": "Gross Income Period Y2D"
+                                                        }
                                                     }
                                                 ]
                                             }

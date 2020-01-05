@@ -30,5 +30,9 @@ DEFAULT_REPLY_WORDING = "เจ้านายกำลังฝึกผมใ�
 REPLY_WORDING = ["99999", "00000", "เสี่ยจัสติน", "เสี่ย"]
 TEST_WORDING = ["test", "Test"]
 
+
+# Peroid Select Gross incomde
+GROSS_INCOME = "Gross Income Period Y2D"
+
 RICH_MENU_MAIN = "richmenu-ffbaa5175e92a75db4191e35c71b1148"
 RICH_MENU_SECOND = "richmenu-698b7cddd9fcc578305bb3ed4c7ec984"
