@@ -10,7 +10,9 @@ def getpm(lat: str = None, long: str = None):
     payload = {}
     headers = {}
 
-    response = requests.request("GET", url.format(lat, long, API_AIRVISUAL_KEY), headers=headers, data=payload)
+    session = requests.Session()
+    # response = requests.request("GET", url.format(lat, long, API_AIRVISUAL_KEY), headers=headers, data=payload)
+    response = session.get(url.format(lat, long, API_AIRVISUAL_KEY), headers=headers, data=payload)
     data = response.json()
     city = data['data']['city']
     state = data['data']['state']
