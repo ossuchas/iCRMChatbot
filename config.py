@@ -34,5 +34,15 @@ TEST_WORDING = ["test", "Test"]
 # Peroid Select Gross incomde
 GROSS_INCOME = "Gross Income Period Y2D"
 
-RICH_MENU_MAIN = "richmenu-ffbaa5175e92a75db4191e35c71b1148"
-RICH_MENU_SECOND = "richmenu-698b7cddd9fcc578305bb3ed4c7ec984"
+MENU_02_VIP_BG = "LL BY SubBG"
+
+# Peroid Select Gross incomde
+BOOKING_INCOME = "Booking Period Y2D"
+
+# Peroid Select All Sub BG
+LL_MSG_ALLSUBBG_PERIOD = "LL Period BY SubBG"
+
+RICH_MENU_MAIN = "richmenu-d8d6ac0c6ec6c8144a0779fae0765209"
+RICH_MENU_SECOND = "richmenu-2b04c8ad0b5ef6dfecf732b52b82e393"
+
+CHECK_PM = "ตรวจสอบค่า PM 2.5"
