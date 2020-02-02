@@ -12,17 +12,19 @@ from config import LINE_API_REPLY
 
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, GROSS_INCOME, LL_MSG_ALLSUBBG_PERIOD, \
-    MENU_02_VIP_BG, BOOKING_INCOME, CHECK_PM
+    MENU_02_VIP_BG, BOOKING_INCOME, CHECK_PM, VIRUS
 
 from libs import chatbot_helper, test, menu_04_01_ac_period, menu_04_01_actual_income_show_daily, \
     quick_reply, menu_project_sdh, chatbot_push_helper, chatbot_rich_menu, menu_04_01_acgrs_period, \
     menu_04_01_acgrs_income_show_y2d, menu_02_01_ll_allbg_subbg_period_show, \
     menu_02_01_ll_allbg_subbg_period_show_L_C, menu_02_01_ll_allbg_subbg_period, \
-    share_location, check_pm_airvisual, menu_06_01_pm_value
+    share_location, check_pm_airvisual, menu_06_01_pm_value, \
+    virus_corona_stat
 
 from models.crm_line_gross_income import GrossIncomeModel
 from models.crm_line_ll_data import LeadLagModel
 from models.chatbot_mst_user import MstUserModel
+from models.tmp_virus_corona import VirusCoronaModel
 
 
 class ChatBot(Resource):
@@ -82,11 +84,17 @@ class ChatBotRegister(Resource):
                 # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
                 quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif message in TEST_WORDING:
+                # print('kai')
                 menu_04_01_acgrs_period.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
                 # menu_project_sdh.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
                 # chatbot_push_helper.pushMsg(reply_token, CHANNEL_ACCESS_TOKEN)
                 # values = ActualIncomeByProjModel().find_by_datetest("2")[0]
                 # print(values)
+            elif message in VIRUS:
+                virus = VirusCoronaModel().find_all()
+                virus_totl = VirusCoronaModel().get_TotalCase()
+                # print(virus_totl[0], virus_totl[1])
+                virus_corona_stat.replyMsg(reply_token, virus, virus_totl[0], virus_totl[1], CHANNEL_ACCESS_TOKEN)
             elif message in GROSS_INCOME:
                 # print(message)
                 grs_model = GrossIncomeModel().find_all()

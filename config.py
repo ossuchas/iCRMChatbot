@@ -46,3 +46,6 @@ RICH_MENU_MAIN = "richmenu-d8d6ac0c6ec6c8144a0779fae0765209"
 RICH_MENU_SECOND = "richmenu-2b04c8ad0b5ef6dfecf732b52b82e393"
 
 CHECK_PM = "ตรวจสอบค่า PM 2.5"
+
+# Virus Corona
+VIRUS = ["ไวรัสโคโรนา", "โคโรนา", "virus", "corona", "อู่ฮั่น", "ไวรัสจีน", "ไวรัส"]

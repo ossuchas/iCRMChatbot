@@ -14,12 +14,22 @@ def getpm(lat: str = None, long: str = None):
     # response = requests.request("GET", url.format(lat, long, API_AIRVISUAL_KEY), headers=headers, data=payload)
     response = session.get(url.format(lat, long, API_AIRVISUAL_KEY), headers=headers, data=payload)
     data = response.json()
+    print(data)
     city = data['data']['city']
     state = data['data']['state']
     country = data['data']['country']
-    pm_val = data['data']['current']['pollution']['aqius']
-    temperature = data['data']['current']['weather']['tp']
-    icon_weather = data['data']['current']['weather']['ic']
+    try:
+        pm_val = data['data']['current']['pollution']['aqius']
+        temperature = data['data']['current']['weather']['tp']
+        icon_weather = data['data']['current']['weather']['ic']
+
+    except:
+        url_near = "https://api.airvisual.com/v2/nearest_city?key=997fd440-6a2e-48a9-9336-7cb0eaef4a99"
+        response = session.get(url_near, headers=headers, data=payload)
+        pm_val = data['data']['current']['pollution']['aqius']
+        temperature = data['data']['current']['weather']['tp']
+        icon_weather = data['data']['current']['weather']['ic']
+
     print(response.text.encode('utf8'))
     # print(city, state, country, val)
     return city, state, country, pm_val, temperature, icon_weather
