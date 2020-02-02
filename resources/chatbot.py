@@ -110,7 +110,6 @@ class ChatBotRegister(Resource):
                 menu_04_01_acgrs_income_show_y2d.replyMsg(reply_token, grs_model, CHANNEL_ACCESS_TOKEN)
             elif re.match(HIT_FEATURES, message):
                 menu_06_01_features.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
-                pass
             elif re.match(MENU_02_VIP_BG, message):  # Select Sub BG
                 # LL[0] BY[1] SubBG[2] <1-4>[1.0][3]
                 value = message.split(' ')[3]

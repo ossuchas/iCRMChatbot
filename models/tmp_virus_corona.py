@@ -20,7 +20,7 @@ class VirusCoronaModel(db.Model):
     def get_TotalCase(cls) -> int:
         sql_statement = """
            SELECT SUM(CAST(REPLACE(TotalCase,',','') AS INT)) AS TotalCase
-           ,SUM(CAST(REPLACE(TotalDeath,',','') AS INT)) AS Death
+           ,SUM(CASE WHEN LEN(TotalDeath) = 0 THEN 0 ELSE CAST(TotalDeath AS FLOAT) END)AS Death
            FROM dbo.tmp_virus_corona WITH(NOLOCK)
            """
         return db.session.execute(sql_statement).fetchone()
