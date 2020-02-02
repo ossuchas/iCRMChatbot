@@ -16,37 +16,60 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
         {
             "type": "flex",
             "altText": "Flex Message",
-            "contents": {
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "ตรวจสอบ PM 2.5",
-                                "text": "ตรวจสอบค่า PM 2.5"
-                            },
-                            "color": "#7B76B4",
-                            "style": "primary"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "ไวรัส โคโรนา",
-                                "text": "ไวรัสโคโรนา"
-                            },
-                            "color": "#B62121",
-                            "margin": "sm",
-                            "style": "primary"
-                        }
-                    ]
+            "contents":
+                {
+                    "type": "bubble",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                                "type": "image",
+                                                "url": "https://i.ibb.co/stkd5R9/Untitled-1.png",
+                                                "size": "full",
+                                                "aspectMode": "cover",
+                                                "gravity": "center",
+                                                "aspectRatio": "30:9",
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "action",
+                                                    "text": "ตรวจสอบค่า PM 2.5"
+                                                }
+                                            },
+                                            {
+                                                "type": "separator",
+                                                "margin": "sm"
+                                            },
+                                            {
+                                                "type": "image",
+                                                "url": "https://i.ibb.co/k1YS4Sh/virus-10.png",
+                                                "size": "full",
+                                                "aspectMode": "cover",
+                                                "aspectRatio": "30:9",
+                                                "gravity": "center",
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "action",
+                                                    "text": "ไวรัสโคโรนา"
+                                                }
+                                            }
+                                        ],
+                                        "flex": 1
+                                    }
+                                ]
+                            }
+                        ],
+                        "paddingAll": "0px"
+                    }
                 }
-            }
         }
 
     data = {
