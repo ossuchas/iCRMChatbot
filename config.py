@@ -49,3 +49,6 @@ CHECK_PM = "ตรวจสอบค่า PM 2.5"
 
 # Virus Corona
 VIRUS = ["ไวรัสโคโรนา", "โคโรนา", "virus", "corona", "อู่ฮั่น", "ไวรัสจีน", "ไวรัส"]
+
+# Hit Features
+HIT_FEATURES = "Hit Features"
