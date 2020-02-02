@@ -3,6 +3,7 @@
 import requests
 import json
 from config import LINE_API_REPLY
+from datetime import datetime
 
 
 def replyMsg(Reply_token: str = None, head_title: str = None, pm_val: str = None, line_Acees_Token: str = None):
@@ -23,6 +24,7 @@ def replyMsg(Reply_token: str = None, head_title: str = None, pm_val: str = None
     sub_status = None
     color_box = None
     face_url = None
+    last_dttm = f"Last updated: {datetime.now().strftime('%d.%m.%Y %H:%M')} (GMT+0700)"
     # pm_int = 50
     if 0 <= pm_int <= 50:  # Green
         status = "Good"
@@ -142,7 +144,8 @@ def replyMsg(Reply_token: str = None, head_title: str = None, pm_val: str = None
                             },
                             {
                                 "type": "text",
-                                "text": "last updated: 21/01/2020 07:36AM",
+                                # "text": "last updated: 21/01/2020 07:36AM",
+                                "text": f"{last_dttm}",
                                 "align": "end",
                                 "size": "xxs",
                                 "style": "italic",
