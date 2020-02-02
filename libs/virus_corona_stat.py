@@ -6,7 +6,7 @@ from config import LINE_API_REPLY
 from models.crm_line_ll_data import LeadLagModel
 from models.tmp_virus_corona import VirusCoronaModel
 from typing import List
-
+from datetime import datetime
 
 def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
              totalCase: int = None,
@@ -75,7 +75,7 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
                         "layout": "baseline",
                         "contents": [ { "type": "text", "text": "Coronavirus (2019-nCoV)", "color": "#FFFFFF", "size": "lg", "weight": "bold", "flex": 0 },
                             { "type": "text", "text": " ", "align": "end", "color": "#FFFFFF", "weight": "bold" },
-                            { "type": "text", "text": "2020-02-01 22:26:00", "position": "absolute", "color": "#FFFFFF", "size": "xs", "style": "italic", "offsetEnd": "17px", "offsetBottom": "2px" }
+                            { "type": "text", "text": datetime.now().strftime("%d.%m.%Y, %H:%M:%S"), "position": "absolute", "color": "#FFFFFF", "size": "xs", "style": "italic", "offsetEnd": "17px", "offsetBottom": "2px" }
                         ]
                     },
                     "body": {
