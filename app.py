@@ -21,7 +21,7 @@ app.config.from_envvar("APPLICATION_SETTING")
 
 @app.route('/')
 def hello_world():
-    return "iCRM Chatbot Hello World!! v1.0.4"
+    return "IT@AP Chatbot Hello World!! v1.0.0"
 
 
 api.add_resource(ChatBotRegister, "/register")

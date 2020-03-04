@@ -3,7 +3,6 @@
 import requests
 import json
 from config import LINE_API_REPLY
-from models.crm_line_ll_data import LeadLagModel
 from models.tmp_virus_corona import VirusCoronaModel
 from typing import List
 from datetime import datetime

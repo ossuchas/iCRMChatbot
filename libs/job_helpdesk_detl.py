@@ -3,13 +3,12 @@
 import requests
 import json
 from config import LINE_API_REPLY
-from models.crm_line_ll_data import LeadLagModel
-from models.tmp_virus_corona import VirusCoronaModel
+from models.vw_jobhelpdesk import JobHelpdeskModel
 from typing import List
 from datetime import datetime
 
 
-def replyMsg(Reply_token: str = None, job_no: str = None, line_Acees_Token: str = None):
+def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acees_Token: str = None):
 
     authorization = f'Bearer {line_Acees_Token}'
     headers = {
@@ -77,6 +76,13 @@ def replyMsg(Reply_token: str = None, job_no: str = None, line_Acees_Token: str 
                         "type": "box",
                         "layout": "vertical",
                         "contents": [
+                            {
+                                "type": "text",
+                                "text": "ปริมาณคงเหลือ: 2/5 หน่วย",
+                                "color": "#8c8c8c",
+                                "size": "xs",
+                                "weight": "bold"
+                            },
                             {
                                 "type": "box",
                                 "layout": "horizontal",
@@ -274,6 +280,18 @@ def replyMsg(Reply_token: str = None, job_no: str = None, line_Acees_Token: str 
                                         "color": "#696969"
                                     }
                                 ]
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "uri",
+                                    "label": "Detail",
+                                    "uri": "https://liff.line.me/1653377835-2lm05AzB"
+                                },
+                                "style": "secondary",
+                                "height": "sm",
+                                "margin": "sm",
+                                "gravity": "center"
                             },
                             {
                                 "type": "separator",

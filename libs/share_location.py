@@ -7,7 +7,6 @@ import re
 import requests
 import json
 from config import LINE_API_REPLY
-from models.vw_crm_line_actual_income import ActualIncomeByProjModel
 from typing import List
 
 
