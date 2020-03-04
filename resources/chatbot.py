@@ -12,14 +12,14 @@ from config import LINE_API_REPLY
 
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, GROSS_INCOME, LL_MSG_ALLSUBBG_PERIOD, \
-    MENU_02_VIP_BG, BOOKING_INCOME, CHECK_PM, VIRUS, HIT_FEATURES
+    MENU_02_VIP_BG, BOOKING_INCOME, CHECK_PM, VIRUS, HIT_FEATURES, WEB_VENDOR
 
 from libs import chatbot_helper, test, menu_04_01_ac_period, menu_04_01_actual_income_show_daily, \
     quick_reply, menu_project_sdh, chatbot_push_helper, chatbot_rich_menu, menu_04_01_acgrs_period, \
     menu_04_01_acgrs_income_show_y2d, menu_02_01_ll_allbg_subbg_period_show, \
     menu_02_01_ll_allbg_subbg_period_show_L_C, menu_02_01_ll_allbg_subbg_period, \
     share_location, check_pm_airvisual, menu_06_01_features, \
-    virus_corona_stat, menu_06_01_pm_value
+    virus_corona_stat, menu_06_01_pm_value, wd_check_status, job_helpdesk_detl
 
 from models.crm_line_gross_income import GrossIncomeModel
 from models.crm_line_ll_data import LeadLagModel
@@ -110,6 +110,10 @@ class ChatBotRegister(Resource):
                 menu_04_01_acgrs_income_show_y2d.replyMsg(reply_token, grs_model, CHANNEL_ACCESS_TOKEN)
             elif re.match(HIT_FEATURES, message):
                 menu_06_01_features.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
+            elif re.match(WEB_VENDOR, message):
+                print("kai")
+                # wd_check_status.replyMsg(reply_token, "4016578316", CHANNEL_ACCESS_TOKEN)
+                job_helpdesk_detl.replyMsg(reply_token, "REQ2020002087", CHANNEL_ACCESS_TOKEN)
             elif re.match(MENU_02_VIP_BG, message):  # Select Sub BG
                 # LL[0] BY[1] SubBG[2] <1-4>[1.0][3]
                 value = message.split(' ')[3]
