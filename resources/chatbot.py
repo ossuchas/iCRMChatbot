@@ -76,19 +76,25 @@ class ChatBotRegister(Resource):
                 # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
                 quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif message in VIRUS:
+                # virus = VirusCoronaModel().find_all()
+                # virus_totl = VirusCoronaModel().get_TotalCase()
+                # # print(virus_totl[0], virus_totl[1])
+                # virus_corona_stat.replyMsg(reply_token, virus, virus_totl[0], virus_totl[1], CHANNEL_ACCESS_TOKEN)
                 virus = VirusCoronaModel().find_all()
                 virus_totl = VirusCoronaModel().get_TotalCase()
-                # print(virus_totl[0], virus_totl[1])
-                virus_corona_stat.replyMsg(reply_token, virus, virus_totl[0], virus_totl[1], CHANNEL_ACCESS_TOKEN)
+                # print(virus_totl[0], virus_totl[1], virus_totl[2])
+                virus_corona_stat.replyMsg(reply_token, virus,
+                                           virus_totl[0],
+                                           virus_totl[1],
+                                           virus_totl[2],
+                                           CHANNEL_ACCESS_TOKEN)
             elif message in CHECK_PM:  # Check PM 2.5
                 share_location.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif re.match(HIT_FEATURES, message):
                 menu_06_01_features.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
             elif re.match(WEB_VENDOR, message):
-                # print("kai")
-                # wd_check_status.replyMsg(reply_token, "4016578316", CHANNEL_ACCESS_TOKEN)
                 jobObj = JobHelpdeskModel().find_by_id("REQ2020002019")
-                print(jobObj)
+                # print(jobObj)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
             else:
                 pass

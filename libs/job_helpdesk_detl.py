@@ -300,8 +300,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        # "text": "05.02.20 11:46",
-                                        "text": f"{datetime.strftime(jobOjb.estimatedatetime, '%d.%m.%y %H:%M')}",
+                                        "text": f"{jobOjb.estimatedatetimetxt}",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0
@@ -411,8 +410,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        "text": f"{datetime.strftime(jobOjb.acutalfinishdatetime, '%d.%m.%y %H:%M')}",
-                                        # "text": f"{datetime.strftime(jobOjb.acutalfinishdatetime, '%d.%m.%y %H:%M')}" if jobOjb.acutalfinishdatetimeelse else "-",
+                                        "text": f"{jobOjb.acutalfinishdatetimetxt}",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0
@@ -523,7 +521,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        "text": "05.02.20 11:03",
+                                        "text": f"{jobOjb.infracompletedatetxt}",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0
@@ -634,7 +632,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        "text": "04.02.20 11:39",
+                                        "text": f"{jobOjb.devcompletedatetxt}",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0
@@ -745,7 +743,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        "text": "04.02.20 10:46",
+                                        "text": f"{jobOjb.startdatetimetxt}",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0
@@ -856,7 +854,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        "text": "04.02.20 10:46",
+                                        "text": f"{jobOjb.requestdatetimetxt}",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0

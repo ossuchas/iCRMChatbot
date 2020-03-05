@@ -7,9 +7,11 @@ from models.tmp_virus_corona import VirusCoronaModel
 from typing import List
 from datetime import datetime
 
+
 def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
              totalCase: int = None,
              totalDeath: int = None,
+             totalRecovered: int = None,
              line_Acees_Token: str = None):
     authorization = 'Bearer {}'.format(line_Acees_Token)
     headers = {
@@ -23,7 +25,7 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
     new_contents = [
         {"type": "separator"},
         {"type": "box", "layout": "horizontal",
-         "contents": [{"type": "text", "text": "Coronavirus Cases:", "size": "lg", "weight": "bold", "flex": 0},
+         "contents": [{"type": "text", "text": "Covid-19 Cases:", "size": "lg", "weight": "bold", "flex": 0},
                       {"type": "text", "text": f"{totalCase:,.0f}", "align": "end", "weight": "bold", "size": "xl",
                        "color": "#0074ff"}
                       ]
@@ -32,6 +34,11 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
          "contents": [{"type": "text", "text": "Deaths:", "size": "lg", "weight": "bold", "flex": 0},
                       {"type": "text", "text": f"{totalDeath:,.0f}", "align": "end", "weight": "bold", "size": "xl",
                        "color": "#ff2400"}]
+         },
+        {"type": "box", "layout": "horizontal",
+         "contents": [{"type": "text", "text": "Recovered:", "size": "lg", "weight": "bold", "flex": 0},
+                      {"type": "text", "text": f"{totalRecovered:,.0f}", "align": "end", "weight": "bold", "size": "xl",
+                       "color": "#8ACA2B"}]
          },
         {"type": "box", "layout": "baseline",  # Header
          "contents": [{"type": "text", "text": "Country", "size": "sm", "weight": "bold", "color": "#FFFFFF"},
@@ -60,6 +67,27 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
         i_count_rec += 1
 
     # print(new_contents)
+    new_contents.append(
+        {
+            "type": "separator",
+            "margin": "sm"
+        }
+    )
+
+    new_contents.append(
+        {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "Remark : List of Country by Total Cases TOP 25",
+                    "size": "xs",
+                    "style": "italic"
+                }
+            ]
+        }
+    )
 
     type_msg = \
         {
@@ -72,7 +100,7 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
                     "header": {
                         "type": "box",
                         "layout": "baseline",
-                        "contents": [ { "type": "text", "text": "Coronavirus (2019-nCoV)", "color": "#FFFFFF", "size": "lg", "weight": "bold", "flex": 0 },
+                        "contents": [ { "type": "text", "text": "Covid-19 (2019-nCoV)", "color": "#FFFFFF", "size": "lg", "weight": "bold", "flex": 0 },
                             { "type": "text", "text": " ", "align": "end", "color": "#FFFFFF", "weight": "bold" },
                             { "type": "text", "text": datetime.now().strftime("%d.%m.%Y, %H:%M:%S"), "position": "absolute", "color": "#FFFFFF", "size": "xs", "style": "italic", "offsetEnd": "17px", "offsetBottom": "2px" }
                         ]
@@ -80,7 +108,8 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
                     "body": {
                         "type": "box",
                         "layout": "vertical",
-                        "contents":  new_contents
+                        "contents":
+                            new_contents
                         #     [
                         #     { "type": "separator" },
                         #     { "type": "box", "layout": "horizontal",
@@ -150,6 +179,8 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
                     }
                 }
         }
+
+    print(type_msg)
 
     data = {
         "replyToken": Reply_token,

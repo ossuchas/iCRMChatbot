@@ -14,13 +14,14 @@ class VirusCoronaModel(db.Model):
 
     @classmethod
     def find_all(cls) -> List["VirusCoronaModel"]:
-        return cls.query.all()
+        return cls.query.limit(25).all()
 
     @classmethod
     def get_TotalCase(cls) -> int:
         sql_statement = """
            SELECT SUM(CAST(REPLACE(TotalCase,',','') AS INT)) AS TotalCase
-           ,SUM(CASE WHEN LEN(TotalDeath) = 0 THEN 0 ELSE CAST(TotalDeath AS FLOAT) END)AS Death
+           ,SUM(CASE WHEN LEN(TotalDeath) = 0 THEN 0 ELSE CAST(REPLACE(TotalDeath,',','') AS FLOAT) END)AS Death
+           ,SUM(CASE WHEN LEN(TotalCured) = 0 THEN 0 ELSE CAST(REPLACE(TotalCured,',','') AS FLOAT) END)AS TotalCured
            FROM dbo.tmp_virus_corona WITH(NOLOCK)
            """
         return db.session.execute(sql_statement).fetchone()
