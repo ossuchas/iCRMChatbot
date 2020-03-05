@@ -87,7 +87,7 @@ class ChatBotRegister(Resource):
             elif re.match(WEB_VENDOR, message):
                 # print("kai")
                 # wd_check_status.replyMsg(reply_token, "4016578316", CHANNEL_ACCESS_TOKEN)
-                jobObj = JobHelpdeskModel().find_by_id("REQ2020002087")
+                jobObj = JobHelpdeskModel().find_by_id("REQ2020002019")
                 print(jobObj)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
             else:

@@ -5,12 +5,6 @@ from typing import List
 class JobHelpdeskModel(db.Model):
     __tablename__ = "vw_CRM_JobHelpDesk"
 
-    # Country = db.Column(db.String(255), primary_key=True)
-    # TotalCase = db.Column(db.String(255))
-    # TodayChange = db.Column(db.String(255))
-    # TotalDeath = db.Column(db.String(255))
-    # Location = db.Column(db.String(255))
-    # Datetime = db.Column(db.String(255))
     requestid = db.Column(db.Integer, primary_key=True)
     ticketnumber = db.Column(db.String(50))
     ticketsystem = db.Column(db.String(50))

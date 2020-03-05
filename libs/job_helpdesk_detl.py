@@ -47,7 +47,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                         "contents": [
                                             {
                                                 "type": "text",
-                                                "text": "REQ2020002087",
+                                                "text": jobOjb.ticketnumber,
                                                 "color": "#ffffff",
                                                 "size": "xl",
                                                 "flex": 5,
@@ -77,13 +77,6 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                         "layout": "vertical",
                         "contents": [
                             {
-                                "type": "text",
-                                "text": "ปริมาณคงเหลือ: 2/5 หน่วย",
-                                "color": "#8c8c8c",
-                                "size": "xs",
-                                "weight": "bold"
-                            },
-                            {
                                 "type": "box",
                                 "layout": "horizontal",
                                 "contents": [
@@ -97,7 +90,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":นางสาวศศิมา วงหมิง",
+                                        "text": f":{jobOjb.requestby}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -119,7 +112,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":Finance and Accounting",
+                                        "text": f":{jobOjb.requestdept}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -141,7 +134,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":เพิ่มข้อความในชุดจอง แนวราบ + แนวสูง",
+                                        "text": f":{jobOjb.requestsubject}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -163,7 +156,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":High",
+                                        "text": f":{jobOjb.priority}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -185,7 +178,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":Change",
+                                        "text": f":{jobOjb.jobtype}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -207,7 +200,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":ขอปรับ โปรแกรม/รายงาน",
+                                        "text": f":{jobOjb.category}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -229,7 +222,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":นางสาวชลลดา วงศ์มุกดาพิทักษ์",
+                                        "text": f":{jobOjb.crmconsultname}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -251,7 +244,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":นางสาวอภิชญา เจียรสุทธากุล",
+                                        "text": f":{jobOjb.devname}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -273,7 +266,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": ":นายกรกฎา แก้ววงศ์ใหญ่",
+                                        "text": f":{jobOjb.infraname}",
                                         "size": "sm",
                                         "flex": 3,
                                         "wrap": True,
@@ -307,7 +300,8 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        "text": "05.02.20 11:46",
+                                        # "text": "05.02.20 11:46",
+                                        "text": f"{datetime.strftime(jobOjb.estimatedatetime, '%d.%m.%y %H:%M')}",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0
@@ -417,7 +411,8 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "contents": [
                                     {
                                         "type": "text",
-                                        "text": "05.02.20 11:08",
+                                        "text": f"{datetime.strftime(jobOjb.acutalfinishdatetime, '%d.%m.%y %H:%M')}",
+                                        # "text": f"{datetime.strftime(jobOjb.acutalfinishdatetime, '%d.%m.%y %H:%M')}" if jobOjb.acutalfinishdatetimeelse else "-",
                                         "size": "sm",
                                         "gravity": "center",
                                         "flex": 0
