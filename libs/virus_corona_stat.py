@@ -180,7 +180,7 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
                 }
         }
 
-    print(type_msg)
+    # print(type_msg)
 
     data = {
         "replyToken": Reply_token,

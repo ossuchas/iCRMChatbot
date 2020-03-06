@@ -8,6 +8,7 @@ from db import db
 from ma import ma
 
 from resources.chatbot import ChatBotRegister
+from resources.vw_jobhelpdesk import JobHelpDesk
 
 app = Flask(__name__)
 
@@ -25,6 +26,7 @@ def hello_world():
 
 
 api.add_resource(ChatBotRegister, "/register")
+api.add_resource(JobHelpDesk, "/helpdeskdetl/<string:_job_id>")
 
 if __name__ == '__main__':
     db.init_app(app)

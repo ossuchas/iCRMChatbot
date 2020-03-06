@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, \
-    CHECK_PM, VIRUS, HIT_FEATURES, WEB_VENDOR
+    CHECK_PM, VIRUS, HIT_FEATURES, JOB_HELPDESK_NO
 
 from libs import quick_reply, chatbot_rich_menu, \
     share_location, check_pm_airvisual, menu_06_01_features, \
@@ -72,17 +72,10 @@ class ChatBotRegister(Resource):
 
             if message in REPLY_WORDING:
                 reply_msg = DEFAULT_REPLY_WORDING
-                # Reply Message Default Post API
-                # chatbot_helper.replyMsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
                 quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif message in VIRUS:
-                # virus = VirusCoronaModel().find_all()
-                # virus_totl = VirusCoronaModel().get_TotalCase()
-                # # print(virus_totl[0], virus_totl[1])
-                # virus_corona_stat.replyMsg(reply_token, virus, virus_totl[0], virus_totl[1], CHANNEL_ACCESS_TOKEN)
                 virus = VirusCoronaModel().find_all()
                 virus_totl = VirusCoronaModel().get_TotalCase()
-                # print(virus_totl[0], virus_totl[1], virus_totl[2])
                 virus_corona_stat.replyMsg(reply_token, virus,
                                            virus_totl[0],
                                            virus_totl[1],
@@ -92,8 +85,8 @@ class ChatBotRegister(Resource):
                 share_location.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
             elif re.match(HIT_FEATURES, message):
                 menu_06_01_features.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
-            elif re.match(WEB_VENDOR, message):
-                jobObj = JobHelpdeskModel().find_by_id("REQ2020002019")
+            elif re.match(JOB_HELPDESK_NO, message):
+                jobObj = JobHelpdeskModel().find_by_id(message)
                 # print(jobObj)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
             else:

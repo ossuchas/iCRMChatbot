@@ -279,7 +279,8 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "action": {
                                     "type": "uri",
                                     "label": "Detail",
-                                    "uri": "https://liff.line.me/1653377835-2lm05AzB"
+                                    "uri": f"line://app/1653926236-JdG4bgAQ?id={jobOjb.ticketnumber}"
+                                    # "uri": f"https://liff.line.me/1653926236-JdG4bgAQ?id={jobOjb.ticketnumber}"
                                 },
                                 "style": "secondary",
                                 "height": "sm",
@@ -393,7 +394,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": "38 min",
+                                        "text": f"{jobOjb.dtimefinishvsestimate}",
                                         "gravity": "center",
                                         "flex": 4,
                                         "size": "xs",
@@ -504,7 +505,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": "5 min",
+                                        "text": f"{jobOjb.dtimeinfravsfinish}",
                                         "gravity": "center",
                                         "flex": 4,
                                         "size": "xs",
@@ -615,7 +616,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": "24H32mins",
+                                        "text": f"{jobOjb.dtimedevvsinfra}",
                                         "gravity": "center",
                                         "flex": 4,
                                         "size": "xs",
@@ -726,7 +727,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": "55 min",
+                                        "text": f"{jobOjb.dtimestartvsdev}",
                                         "gravity": "center",
                                         "flex": 4,
                                         "size": "xs",
@@ -837,7 +838,7 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                     },
                                     {
                                         "type": "text",
-                                        "text": "55 min",
+                                        "text": f"{jobOjb.dtimereqvsstart}",
                                         "gravity": "center",
                                         "flex": 4,
                                         "size": "xs",
@@ -947,4 +948,4 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
 
     session = requests.Session()
     response = session.post(LINE_API_REPLY, data=json.dumps(data), headers=headers)
-    return 201
+    # return 201

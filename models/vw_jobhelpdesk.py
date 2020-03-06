@@ -43,6 +43,11 @@ class JobHelpdeskModel(db.Model):
     infracompletedate = db.Column(db.DateTime)
     infracompletedatetxt = db.Column(db.String(20))
     approvecomment = db.Column(db.String(1000))
+    dtimereqvsstart = db.Column(db.String(20))
+    dtimestartvsdev = db.Column(db.String(20))
+    dtimedevvsinfra = db.Column(db.String(20))
+    dtimeinfravsfinish = db.Column(db.String(20))
+    dtimefinishvsestimate = db.Column(db.String(20))
 
     @classmethod
     def find_all(cls) -> List["JobHelpdeskModel"]:

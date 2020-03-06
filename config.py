@@ -53,4 +53,4 @@ VIRUS = ["ไวรัสโคโรนา", "โคโรนา", "virus", "co
 # Hit Features
 HIT_FEATURES = "Hit Features"
 
-WEB_VENDOR = "Web Vendor"
+JOB_HELPDESK_NO = "REQ"
