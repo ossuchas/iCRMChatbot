@@ -279,8 +279,8 @@ def replyMsg(Reply_token: str = None, jobOjb: JobHelpdeskModel = None, line_Acee
                                 "action": {
                                     "type": "uri",
                                     "label": "Detail",
-                                    "uri": f"line://app/1653926236-JdG4bgAQ?id={jobOjb.ticketnumber}"
-                                    # "uri": f"https://liff.line.me/1653926236-JdG4bgAQ?id={jobOjb.ticketnumber}"
+                                    # "uri": f"line://app/1653926236-JdG4bgAQ?id={jobOjb.ticketnumber}"
+                                    "uri": f"https://liff.line.me/1653926236-JdG4bgAQ?id={jobOjb.ticketnumber}"
                                 },
                                 "style": "secondary",
                                 "height": "sm",
