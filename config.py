@@ -42,8 +42,8 @@ BOOKING_INCOME = "Booking Period Y2D"
 # Peroid Select All Sub BG
 LL_MSG_ALLSUBBG_PERIOD = "LL Period BY SubBG"
 
-RICH_MENU_MAIN = "richmenu-d8d6ac0c6ec6c8144a0779fae0765209"
-RICH_MENU_SECOND = "richmenu-2b04c8ad0b5ef6dfecf732b52b82e393"
+RICH_MENU_MAIN = "richmenu-9a26921033429766d27de4d773922cd0"
+RICH_MENU_SECOND = "richmenu-e71c1147c1cdfb044f240581e19075b1"
 
 CHECK_PM = "ตรวจสอบค่า PM 2.5"
 
