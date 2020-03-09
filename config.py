@@ -36,11 +36,6 @@ GROSS_INCOME = "Gross Income Period Y2D"
 
 MENU_02_VIP_BG = "LL BY SubBG"
 
-# Peroid Select Gross incomde
-BOOKING_INCOME = "Booking Period Y2D"
-
-# Peroid Select All Sub BG
-LL_MSG_ALLSUBBG_PERIOD = "LL Period BY SubBG"
 
 RICH_MENU_MAIN = "richmenu-9a26921033429766d27de4d773922cd0"
 RICH_MENU_SECOND = "richmenu-e71c1147c1cdfb044f240581e19075b1"
@@ -54,3 +49,4 @@ VIRUS = ["ไวรัสโคโรนา", "โคโรนา", "virus", "co
 HIT_FEATURES = "Hit Features"
 
 JOB_HELPDESK_NO = "REQ"
+JOB_HELPDESK_FIND = "req_no="

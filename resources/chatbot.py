@@ -7,11 +7,13 @@ from datetime import datetime, timedelta
 
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, \
-    CHECK_PM, VIRUS, HIT_FEATURES, JOB_HELPDESK_NO
+    CHECK_PM, VIRUS, HIT_FEATURES, JOB_HELPDESK_NO, \
+    JOB_HELPDESK_FIND
 
 from libs import quick_reply, chatbot_rich_menu, \
     share_location, check_pm_airvisual, menu_06_01_features, \
-    virus_corona_stat, menu_06_01_pm_value, job_helpdesk_detl
+    virus_corona_stat, menu_06_01_pm_value, job_helpdesk_detl, \
+    job_helpdesk_overview_status
 
 from models.chatbot_mst_user import MstUserModel
 from models.tmp_virus_corona import VirusCoronaModel
@@ -71,7 +73,10 @@ class ChatBotRegister(Resource):
 
             if message in REPLY_WORDING:
                 reply_msg = DEFAULT_REPLY_WORDING
-                quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
+                # quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
+                jobObjs = JobHelpdeskModel().find_by_status('Created')
+                print(jobObjs)
+                job_helpdesk_overview_status.replyMsg(reply_token, jobObjs, CHANNEL_ACCESS_TOKEN)
             elif message in VIRUS:
                 virus = VirusCoronaModel().find_all()
                 virus_totl = VirusCoronaModel().get_TotalCase()
@@ -87,6 +92,11 @@ class ChatBotRegister(Resource):
             elif re.match(JOB_HELPDESK_NO, message):
                 jobObj = JobHelpdeskModel().find_by_id(message)
                 # print(jobObj)
+                job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
+            elif re.match(JOB_HELPDESK_FIND, message):
+                job_no = message.replace('req_no=', '')
+                # print(job_no)
+                jobObj = JobHelpdeskModel().find_by_id(job_no)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
             else:
                 pass
