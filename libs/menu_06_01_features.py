@@ -60,6 +60,22 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
                                                     "label": "action",
                                                     "text": "ไวรัสโคโรนา"
                                                 }
+                                            },
+                                            {
+                                                "type": "separator",
+                                                "margin": "sm"
+                                            },
+                                            {
+                                                "type": "image",
+                                                "url": "https://i.ibb.co/dL03vs6/worldmap-covid-19-v1-0.png",
+                                                "gravity": "center",
+                                                "aspectRatio": "30:9",
+                                                "size": "full",
+                                                "action": {
+                                                    "type": "uri",
+                                                    "label": "action",
+                                                    "uri": "https://liff.line.me/1653928950-j3aOP6BE"
+                                                }
                                             }
                                         ],
                                         "flex": 1

@@ -5,7 +5,6 @@ import re
 
 from datetime import datetime, timedelta
 
-
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, \
     CHECK_PM, VIRUS, HIT_FEATURES, JOB_HELPDESK_NO
