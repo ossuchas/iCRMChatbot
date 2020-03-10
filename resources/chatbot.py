@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, \
     CHECK_PM, VIRUS, HIT_FEATURES, JOB_HELPDESK_NO, \
-    JOB_HELPDESK_FIND
+    JOB_HELPDESK_FIND, JOB_HELPDESK_COPY_NOTIFY
 
 from libs import quick_reply, chatbot_rich_menu, \
     share_location, check_pm_airvisual, menu_06_01_features, \
@@ -97,6 +97,12 @@ class ChatBotRegister(Resource):
                 job_no = message.replace('req_no=', '')
                 # print(job_no)
                 jobObj = JobHelpdeskModel().find_by_id(job_no)
+                job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
+            elif re.match(JOB_HELPDESK_COPY_NOTIFY, message):
+                job_txt = message.split('\n')
+                # print(job_txt[1][10:23].strip())
+                job = job_txt[1][10:23].strip()
+                jobObj = JobHelpdeskModel().find_by_id(job)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
             else:
                 pass
