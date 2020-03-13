@@ -76,6 +76,22 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
                                                     "label": "action",
                                                     "uri": "https://liff.line.me/1653928950-j3aOP6BE"
                                                 }
+                                            },
+                                            {
+                                                "type": "separator",
+                                                "margin": "sm"
+                                            },
+                                            {
+                                                "type": "image",
+                                                "url": "https://i.ibb.co/10QSYk8/thai-covid-19-v1-1.png",
+                                                "gravity": "center",
+                                                "aspectRatio": "30:9",
+                                                "size": "full",
+                                                "action": {
+                                                    "type": "uri",
+                                                    "label": "action",
+                                                    "uri": "https://liff.line.me/1653928950-rWE89QNw"
+                                                }
                                             }
                                         ],
                                         "flex": 1
