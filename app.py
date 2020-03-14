@@ -9,6 +9,7 @@ from ma import ma
 
 from resources.chatbot import ChatBotRegister
 from resources.vw_jobhelpdesk import JobHelpDesk
+from resources.userauthen import UserAPRegister
 
 app = Flask(__name__)
 
@@ -26,6 +27,7 @@ def hello_world():
 
 
 api.add_resource(ChatBotRegister, "/register")
+api.add_resource(UserAPRegister, "/userapregister")
 api.add_resource(JobHelpDesk, "/helpdeskdetl/<string:_job_id>")
 
 if __name__ == '__main__':
