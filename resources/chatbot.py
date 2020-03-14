@@ -8,12 +8,13 @@ from datetime import datetime, timedelta
 from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
     TEST_WORDING, RICH_MENU_MAIN, RICH_MENU_SECOND, \
     CHECK_PM, VIRUS, HIT_FEATURES, JOB_HELPDESK_NO, \
-    JOB_HELPDESK_FIND, JOB_HELPDESK_COPY_NOTIFY
+    JOB_HELPDESK_FIND, JOB_HELPDESK_COPY_NOTIFY, \
+    COVID19, JOB_HELPDESK_OPEN, JOB_HELPDESK_INQUIRY
 
 from libs import quick_reply, chatbot_rich_menu, \
     share_location, check_pm_airvisual, menu_06_01_features, \
     virus_corona_stat, menu_06_01_pm_value, job_helpdesk_detl, \
-    job_helpdesk_overview_status
+    job_helpdesk_overview_status, covid19_menu_list
 
 from models.chatbot_mst_user import MstUserModel
 from models.tmp_virus_corona import VirusCoronaModel
@@ -75,12 +76,23 @@ class ChatBotRegister(Resource):
                 reply_msg = DEFAULT_REPLY_WORDING
                 # quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
                 jobObjs = JobHelpdeskModel().find_by_status('Created')
-                print(jobObjs)
+                # print(jobObjs)
                 job_helpdesk_overview_status.replyMsg(reply_token, jobObjs, CHANNEL_ACCESS_TOKEN)
+            elif re.match(JOB_HELPDESK_OPEN, message):
+                jobObjs = JobHelpdeskModel().find_by_status('Created')
+                job_helpdesk_overview_status.replyMsg(reply_token, jobObjs, CHANNEL_ACCESS_TOKEN)
+            elif re.match(JOB_HELPDESK_INQUIRY, message):
+                value = message.split(',')
+                system = value[0].replace('inquiry=>system:', '').strip()
+                # print(system)
+                status = value[1].replace('status:', '').strip()
+                print(f'system = {system}, status = {status}')
             elif message in VIRUS:
                 virus = VirusCoronaModel().find_all()
+                virus_th = VirusCoronaModel().find_value_th()
+                # print(virus_th)
                 virus_totl = VirusCoronaModel().get_TotalCase()
-                virus_corona_stat.replyMsg(reply_token, virus,
+                virus_corona_stat.replyMsg(reply_token, virus, virus_th,
                                            virus_totl[0],
                                            virus_totl[1],
                                            virus_totl[2],
@@ -91,11 +103,11 @@ class ChatBotRegister(Resource):
                 menu_06_01_features.replyMsg(reply_token, None, CHANNEL_ACCESS_TOKEN)
             elif re.match(JOB_HELPDESK_NO, message):
                 jobObj = JobHelpdeskModel().find_by_id(message)
-                # print(jobObj)
+                print(jobObj)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
             elif re.match(JOB_HELPDESK_FIND, message):
                 job_no = message.replace('req_no=', '')
-                # print(job_no)
+                print(job_no)
                 jobObj = JobHelpdeskModel().find_by_id(job_no)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
             elif re.match(JOB_HELPDESK_COPY_NOTIFY, message):
@@ -104,6 +116,8 @@ class ChatBotRegister(Resource):
                 job = job_txt[1][10:23].strip()
                 jobObj = JobHelpdeskModel().find_by_id(job)
                 job_helpdesk_detl.replyMsg(reply_token, jobObj, CHANNEL_ACCESS_TOKEN)
+            elif re.match(COVID19, message):
+                covid19_menu_list.replyMsg(reply_token, CHANNEL_ACCESS_TOKEN)
             else:
                 pass
         elif msg_type == 'image':
@@ -151,6 +165,7 @@ class ChatBotRegister(Resource):
             else:
                 stickerId = None
                 packageId = None
+
                 msg_text = None
 
         # Save Log to DB

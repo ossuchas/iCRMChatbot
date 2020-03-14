@@ -9,6 +9,7 @@ from datetime import datetime
 
 
 def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
+             virus_th: "VirusCoronaModel" = None,
              totalCase: int = None,
              totalDeath: int = None,
              totalRecovered: int = None,
@@ -65,6 +66,26 @@ def replyMsg(Reply_token: str = None, virus: List["VirusCoronaModel"] = None,
              }
         )
         i_count_rec += 1
+
+    # new_contents.append(
+    #     {"type": "box", "layout": "baseline",  # Detail
+    #      "contents": [{"type": "text", "text": " ...", "size": "xs"},
+    #                   {"type": "text", "text": "...", "align": "end", "size": "sm"},
+    #                   {"type": "text", "text": "...", "size": "xs", "align": "end"},
+    #                   {"type": "text", "text": "...", "size": "xs", "align": "end"}],
+    #      "backgroundColor": "#FAF5FF"
+    #      }
+    # )
+    #
+    # new_contents.append(
+    #     {"type": "box", "layout": "baseline",  # Detail
+    #      "contents": [{"type": "text", "text": virus_th.Country, "size": "xs"},
+    #                   {"type": "text", "text": virus_th.TotalCase, "align": "end", "size": "sm"},
+    #                   {"type": "text", "text": virus_th.TodayChange, "size": "xs", "align": "end"},
+    #                   {"type": "text", "text": virus_th.TotalDeath, "size": "xs", "align": "end"}],
+    #      "backgroundColor": "#FAF5FF"
+    #      }
+    # )
 
     # print(new_contents)
     new_contents.append(

@@ -5,7 +5,7 @@ import json
 from config import LINE_API_REPLY
 
 
-def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = None):
+def replyMsg(Reply_token: str = None, line_Acees_Token: str = None):
     authorization = f'Bearer {line_Acees_Token}'
     headers = {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -31,23 +31,6 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
                                         "type": "box",
                                         "layout": "vertical",
                                         "contents": [
-                                            {
-                                                "type": "image",
-                                                "url": "https://i.ibb.co/stkd5R9/Untitled-1.png",
-                                                "size": "full",
-                                                "aspectMode": "cover",
-                                                "gravity": "center",
-                                                "aspectRatio": "30:9",
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "action",
-                                                    "text": "ตรวจสอบค่า PM 2.5"
-                                                }
-                                            },
-                                            {
-                                                "type": "separator",
-                                                "margin": "sm"
-                                            },
                                             {
                                                 "type": "image",
                                                 "url": "https://i.ibb.co/b3PKKwB/covid-19-v2-0.png",

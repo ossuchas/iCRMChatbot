@@ -17,6 +17,10 @@ class VirusCoronaModel(db.Model):
         return cls.query.limit(25).all()
 
     @classmethod
+    def find_value_th(cls) -> "VirusCoronaModel":
+        return cls.query.filter_by(Country=' Thailand ').first()
+
+    @classmethod
     def get_TotalCase(cls) -> int:
         sql_statement = """
            SELECT SUM(CAST(REPLACE(TotalCase,',','') AS INT)) AS TotalCase

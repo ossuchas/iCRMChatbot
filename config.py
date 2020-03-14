@@ -36,9 +36,8 @@ GROSS_INCOME = "Gross Income Period Y2D"
 
 MENU_02_VIP_BG = "LL BY SubBG"
 
-
-RICH_MENU_MAIN = "richmenu-9a26921033429766d27de4d773922cd0"
-RICH_MENU_SECOND = "richmenu-e71c1147c1cdfb044f240581e19075b1"
+RICH_MENU_MAIN = "richmenu-8624d4c0b62fae0f3a1fead4b5b4b045"
+RICH_MENU_SECOND = "richmenu-e6c9778d91e8a69484f6ae6853663bcf"
 
 CHECK_PM = "ตรวจสอบค่า PM 2.5"
 
@@ -48,6 +47,13 @@ VIRUS = ["ไวรัสโคโรนา", "โคโรนา", "virus", "co
 # Hit Features
 HIT_FEATURES = "Hit Features"
 
+JOB_HELPDESK_OPEN = "Job=Open"
+JOB_HELPDESK_INQUIRY = "inquiry=>system:"
+JOB_HELPDESK_KPI = "Job=KPI"
+JOB_HELPDESK_Request = "Job=Request"
 JOB_HELPDESK_NO = "REQ"
 JOB_HELPDESK_FIND = "req_no="
 JOB_HELPDESK_COPY_NOTIFY = "CRMLineNotify"
+
+# Covid-19
+COVID19 = "covid-19"
