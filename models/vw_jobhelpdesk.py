@@ -59,7 +59,7 @@ class JobHelpdeskModel(db.Model):
 
     @classmethod
     def find_by_status(cls, _status: str) -> List["JobHelpdeskModel"]:
-        return cls.query.filter_by(status=_status, ticketsystem='SYS-CRM').order_by(cls.requestdatetime.desc()).all()
+        return cls.query.filter_by(status=_status, ticketsystem='CRM').order_by(cls.requestdatetime.desc()).all()
 
     @classmethod
     def find_by_inquiry(cls, _status: str, _system: str) -> List["JobHelpdeskModel"]:
