@@ -14,7 +14,8 @@ from config import CHANNEL_ACCESS_TOKEN, REPLY_WORDING, DEFAULT_REPLY_WORDING, \
 from libs import quick_reply, chatbot_rich_menu, \
     share_location, check_pm_airvisual, menu_06_01_features, \
     virus_corona_stat, menu_06_01_pm_value, job_helpdesk_detl, \
-    job_helpdesk_overview_status, covid19_menu_list
+    job_helpdesk_overview_status, covid19_menu_list, \
+    log_linechatbot as logs
 
 from models.chatbot_mst_user import MstUserModel
 from models.tmp_virus_corona import VirusCoronaModel
@@ -50,6 +51,11 @@ class ChatBotRegister(Resource):
         beacon_hwid = None
         beacon_dm = None
         beacon_type = None
+
+        # Register Flag
+        register_flag = 'N'
+        register_empid = None
+        register_email = None
 
         try:
             groupId = payload['events'][0]['source']['groupId']
@@ -144,6 +150,7 @@ class ChatBotRegister(Resource):
         elif msg_type == 'postback':
             # print('kai')
             param_data = payload['events'][0]['postback']['data']
+            msg_text = param_data
             # print(param_data)
             richmenuId = None
             if param_data == 'next':
@@ -174,10 +181,11 @@ class ChatBotRegister(Resource):
                 msg_text = None
 
         # Save Log to DB
-        # logs.savechatlog2db(reply_token, groupId,
-        #                     userId, source_type,
-        #                     timestamps, msg_type,
-        #                     msg_text, stickerId, packageId,
-        #                     beacon_hwid, beacon_dm, beacon_type)
+        logs.savechatlog2db(reply_token, groupId,
+                            userId, source_type,
+                            timestamps, msg_type,
+                            msg_text, stickerId, packageId,
+                            beacon_hwid, beacon_dm, beacon_type,
+                            register_flag, register_empid, register_email)
 
         return {"message": "Register Line Push and Reply Message Successful"}, 201
