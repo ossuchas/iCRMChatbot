@@ -61,6 +61,10 @@ class JobHelpdeskModel(db.Model):
     def find_by_status(cls, _status: str) -> List["JobHelpdeskModel"]:
         return cls.query.filter_by(status=_status, ticketsystem='SYS-CRM').order_by(cls.requestdatetime.desc()).all()
 
+    @classmethod
+    def find_by_inquiry(cls, _status: str, _system: str) -> List["JobHelpdeskModel"]:
+        return cls.query.filter_by(status=_status, ticketsystem=_system).order_by(cls.requestdatetime.desc()).limit(15).all()
+
     # @classmethod
     # def get_TotalCase(cls) -> int:
     #     sql_statement = """

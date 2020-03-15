@@ -77,16 +77,21 @@ class ChatBotRegister(Resource):
                 # quick_reply.quickreplymsg(reply_token, reply_msg, CHANNEL_ACCESS_TOKEN)
                 jobObjs = JobHelpdeskModel().find_by_status('Created')
                 # print(jobObjs)
-                job_helpdesk_overview_status.replyMsg(reply_token, jobObjs, CHANNEL_ACCESS_TOKEN)
+                job_helpdesk_overview_status.replyMsg(reply_token, 'CRM', 'Created', jobObjs, CHANNEL_ACCESS_TOKEN)
             elif re.match(JOB_HELPDESK_OPEN, message):
-                jobObjs = JobHelpdeskModel().find_by_status('Created')
-                job_helpdesk_overview_status.replyMsg(reply_token, jobObjs, CHANNEL_ACCESS_TOKEN)
+                status = 'Created'
+                system = 'CRM'
+                jobObjs = JobHelpdeskModel().find_by_status(status)
+                job_helpdesk_overview_status.replyMsg(reply_token, system, status, jobObjs, CHANNEL_ACCESS_TOKEN)
             elif re.match(JOB_HELPDESK_INQUIRY, message):
                 value = message.split(',')
                 system = value[0].replace('inquiry=>system:', '').strip()
                 # print(system)
                 status = value[1].replace('status:', '').strip()
-                print(f'system = {system}, status = {status}')
+                # print(f'system = {system}, status = {status}')
+                jobObjs = JobHelpdeskModel().find_by_inquiry(status, system)
+                # print(jobObjs)
+                job_helpdesk_overview_status.replyMsg(reply_token, system, status, jobObjs, CHANNEL_ACCESS_TOKEN)
             elif message in VIRUS:
                 virus = VirusCoronaModel().find_all()
                 virus_th = VirusCoronaModel().find_value_th()

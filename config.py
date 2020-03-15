@@ -38,6 +38,7 @@ MENU_02_VIP_BG = "LL BY SubBG"
 
 RICH_MENU_MAIN = "richmenu-8624d4c0b62fae0f3a1fead4b5b4b045"
 RICH_MENU_SECOND = "richmenu-e6c9778d91e8a69484f6ae6853663bcf"
+# Register => richmenu-b3ce1866f8ef334ab1ab3bc30a54d669
 
 CHECK_PM = "ตรวจสอบค่า PM 2.5"
 

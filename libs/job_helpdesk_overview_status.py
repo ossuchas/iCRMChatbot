@@ -8,7 +8,11 @@ from typing import List
 from datetime import datetime
 
 
-def replyMsg(Reply_token: str = None, jobs: List["JobHelpdeskModel"] = None, line_Acees_Token: str = None):
+def replyMsg(Reply_token: str = None,
+             system: str = None,
+             status: str = None,
+             jobs: List["JobHelpdeskModel"] = None,
+             line_Acees_Token: str = None):
 
     authorization = f'Bearer {line_Acees_Token}'
     headers = {
@@ -54,8 +58,10 @@ def replyMsg(Reply_token: str = None, jobs: List["JobHelpdeskModel"] = None, lin
     new_contents.append(
         {"type": "separator", "margin": "sm"},
     )
+    date_time = datetime.now().strftime("%d.%m.%Y %H:%M")
+    # print(date_time)
     new_contents.append(
-        {"type": "text", "text": "10.03.2020 18:02 (GMT+0700)", "size": "xs", "align": "end", "color": "#8c8c8c"},
+        {"type": "text", "text": f"{date_time} (GMT+0700)", "size": "xs", "align": "end", "color": "#8c8c8c"},
     )
 
     # print(i_count_rec)
@@ -87,7 +93,7 @@ def replyMsg(Reply_token: str = None, jobs: List["JobHelpdeskModel"] = None, lin
                                     },
                                     {
                                         "type": "text",
-                                        "text": "Status : Open",
+                                        "text": f"System: {system} (Status : {status})",
                                         "size": "md",
                                         "weight": "bold",
                                         "color": "#fffffff6"
