@@ -38,10 +38,15 @@ def replyMsg(Reply_token: str = None, line_Acees_Token: str = None):
                                                 "aspectMode": "cover",
                                                 "aspectRatio": "30:9",
                                                 "gravity": "center",
+                                                # "action": {
+                                                #     "type": "message",
+                                                #     "label": "action",
+                                                #     "text": "ไวรัสโคโรนา"
+                                                # }
                                                 "action": {
-                                                    "type": "message",
+                                                    "type": "uri",
                                                     "label": "action",
-                                                    "text": "ไวรัสโคโรนา"
+                                                    "uri": "https://liff.line.me/1653928950-rbE1Dl87"
                                                 }
                                             },
                                             {
