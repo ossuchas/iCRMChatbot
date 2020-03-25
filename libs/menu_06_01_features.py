@@ -50,7 +50,7 @@ def replyMsg(Reply_token: str =None, bg: str = None, line_Acees_Token: str = Non
                                             },
                                             {
                                                 "type": "image",
-                                                "url": "https://i.ibb.co/b3PKKwB/covid-19-v2-0.png",
+                                                "url": "https://i.ibb.co/GCVzQ5r/covid-19-v3-0.png",
                                                 "size": "full",
                                                 "aspectMode": "cover",
                                                 "aspectRatio": "30:9",
