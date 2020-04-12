@@ -62,25 +62,14 @@ def replyMsg(Reply_token: str = None, line_Acees_Token: str = None):
                                                 "action": {
                                                     "type": "uri",
                                                     "label": "action",
-                                                    "uri": "https://liff.line.me/1653928950-g09KoJWP"
-                                                }
+                                                    # "uri": "https://liff.line.me/1653928950-g09KoJWP"
+                                                    "uri": "http://67756f7b.ngrok.io/test"
+    }
                                             },
                                             {
                                                 "type": "separator",
                                                 "margin": "sm"
-                                            },
-                                            # {
-                                            #     "type": "image",
-                                            #     "url": "https://i.ibb.co/NCd7mqb/thai-covid-19-v1-3.png",
-                                            #     "gravity": "center",
-                                            #     "aspectRatio": "30:9",
-                                            #     "size": "full",
-                                            #     "action": {
-                                            #         "type": "uri",
-                                            #         "label": "action",
-                                            #         "uri": "https://liff.line.me/1653928950-rWE89QNw"
-                                            #     }
-                                            # }
+                                            }
                                         ],
                                         "flex": 1
                                     }
